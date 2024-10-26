@@ -31,7 +31,7 @@ jobs:
 
       - name: Lint ${{ matrix.project }}
         if: env.changed == 'true'
-        run: yarn format
+        run: yarn format-check
         working-directory: ${{ matrix.project }}
 
       # - name: Test ${{ matrix.project }}
