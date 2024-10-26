@@ -1,10 +1,14 @@
 name: CI Pipeline
 
-on: [push]
+on: 
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - test/CI
 
 jobs:
   build:
-    name: Build and Test
+    name: Lint, Build and Test
     runs-on: ubuntu-latest
 
     strategy:
@@ -34,6 +38,11 @@ jobs:
       - name: Lint ${{ matrix.project }}
         if: env.changed == 'true'
         run: yarn format-check
+        working-directory: ${{ matrix.project }}
+        
+      - name: Build ${{ matrix.project }}
+        if: env.changed == 'true'
+        run: yarn build
         working-directory: ${{ matrix.project }}
 
       # - name: Test ${{ matrix.project }}
