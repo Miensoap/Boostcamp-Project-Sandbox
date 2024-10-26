@@ -14,7 +14,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prettier": "prettier --write **/*.{ts,tsx}",
-    "format": "yarn lint && yarn prettier"
+    "format": "yarn lint && yarn prettier",
+    "format-check": "eslint \"{src,apps,libs,test}/**/*.ts\" && prettier --check **/*.{ts,tsx}"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
