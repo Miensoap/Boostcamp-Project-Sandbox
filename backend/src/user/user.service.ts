@@ -4,7 +4,9 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(private readonly userRepository: UserRepository) {
+    console.log(this.userRepository.id);
+  }
 
   async createUser(
     name: string,
