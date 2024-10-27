@@ -1,6 +1,13 @@
-import { Get, Controller, Param, UsePipes, Query } from '@nestjs/common';
+import {
+  Get,
+  Controller,
+  UsePipes,
+  Body,
+  ValidationPipe,
+  Post,
+} from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserEmailValidationPipe } from './pipes/user-email-validation.pipe';
+import { CreateUserDTO } from './dto/CreateUserDTO';
 
 @Controller('/user')
 export class UserController {
@@ -11,9 +18,9 @@ export class UserController {
     return this.userService.findAllUsers();
   }
 
-  @UsePipes(UserEmailValidationPipe)
-  @Get('create')
-  async createUser(@Query('email') email: string) {
-    return this.userService.createUser('John Doe', email, 'password');
+  @UsePipes(ValidationPipe)
+  @Post()
+  async createUser(@Body() user: CreateUserDTO) {
+    return this.userService.createUser(user.name, user.email, user.password);
   }
 }
