@@ -1,5 +1,6 @@
-import { Get, Controller } from '@nestjs/common';
+import { Get, Controller, Param, UsePipes, Query } from '@nestjs/common';
 import { UserService } from './user.service';
+import { UserEmailValidationPipe } from './pipes/user-email-validation.pipe';
 
 @Controller('/user')
 export class UserController {
@@ -10,8 +11,9 @@ export class UserController {
     return this.userService.findAllUsers();
   }
 
+  @UsePipes(UserEmailValidationPipe)
   @Get('create')
-  async createUser() {
-    return this.userService.createUser('John Doe', '1', 'password');
+  async createUser(@Query('email') email: string) {
+    return this.userService.createUser('John Doe', email, 'password');
   }
 }
