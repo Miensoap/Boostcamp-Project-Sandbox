@@ -2,10 +2,9 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prettier": "prettier --write **/*.{ts,tsx}",
     "format": "yarn lint && yarn prettier",
@@ -14,11 +13,16 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
-    "@tanstack/react-query": "^5.59.16",
-    "web-vitals": "^2.1.4"
+    "zustand": "^5.0.1",
+    "@tanstack/react-query": "^5.59.16"
   },
   "devDependencies": {
+    "tailwindcss": "^3.4.14",
+    "postcss": "^8.4.47",
+    "autoprefixer": "^10.4.20",
+    "@tanstack/react-query-devtools": "^5.59.16",
+    "vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "typescript": "^4.9.5",
     "@types/node": "^16.18.115",
     "@types/react": "^18.3.12",
@@ -28,12 +32,11 @@
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
     "prettier": "^3.0.0",
-    "@types/jest": "^27.5.2",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@tanstack/react-query-devtools": "^5.59.16"
+    "prettier-plugin-tailwindcss": "^0.6.8"
   },
   "browserslist": {
     "production": [
