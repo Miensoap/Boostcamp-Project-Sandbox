@@ -6,6 +6,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import useStore from './store';
 
 const queryClient = new QueryClient();
 const getHiMessage = async () => {
@@ -18,13 +19,18 @@ function AppContent() {
     queryFn: getHiMessage,
   });
 
+  const { count, increase, decrease } = useStore();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p className={'text-xl text-blue-600 underline'}>
-          {hiMessage ?? 'no message'}
-        </p>
-      </header>
+      <p className={'text-xl text-blue-600 underline'}>
+        {hiMessage ?? 'no message'}
+      </p>
+      <div className="counter">
+        <p className="text-lg">Count: {count}</p>
+        <button onClick={increase}>Increase</button>
+        <button onClick={decrease}>Decrease</button>
+      </div>
     </div>
   );
 }
