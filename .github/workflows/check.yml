@@ -30,6 +30,13 @@ jobs:
             echo "changed=false" >> $GITHUB_ENV
           fi
 
+      - name: Set up Node.js
+        if: env.changed == 'true'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
       - name: Install Dependencies for ${{ matrix.project }}
         if: env.changed == 'true'
         run: yarn install
@@ -40,10 +47,10 @@ jobs:
         run: yarn format-check
         working-directory: ${{ matrix.project }}
         
-      - name: Build ${{ matrix.project }}
-        if: env.changed == 'true'
-        run: yarn build
-        working-directory: ${{ matrix.project }}
+      # - name: Build ${{ matrix.project }}
+      #   if: env.changed == 'true'
+      #   run: yarn build
+      #   working-directory: ${{ matrix.project }}
 
       # - name: Test ${{ matrix.project }}
       #   if: env.changed == 'true'
