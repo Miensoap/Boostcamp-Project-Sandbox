@@ -1,8 +1,8 @@
 name: CI Pipeline
 
-on: 
+on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [ opened, reopened, synchronize ]
     branches:
       - test/CI
 
@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        project: [frontend, backend]
+        project: [ frontend, backend ]
 
     steps:
       - name: Checkout Repository
@@ -36,6 +36,8 @@ jobs:
         with:
           node-version: '20'
           cache: 'yarn'
+          cache-dependency-path: ${{ matrix.project }}/yarn.lock
+
 
       - name: Install Dependencies for ${{ matrix.project }}
         if: env.changed == 'true'
@@ -46,7 +48,7 @@ jobs:
         if: env.changed == 'true'
         run: yarn format-check
         working-directory: ${{ matrix.project }}
-        
+
       # - name: Build ${{ matrix.project }}
       #   if: env.changed == 'true'
       #   run: yarn build
